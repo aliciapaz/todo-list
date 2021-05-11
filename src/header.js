@@ -3,9 +3,9 @@ const header = () => {
   const titleHeader = document.createElement("header");
   titleHeader.className = "h1-container";
   
-  const h1Title = document.createElement("h1");
-  h1Title.innerHTML = "To do Organizer";
-  titleHeader.appendChild(h1Title);
+  const hTitle = document.createElement("h1");
+  hTitle.innerHTML = "To do Organizer";
+  titleHeader.appendChild(hTitle);
 
   return titleHeader;
 

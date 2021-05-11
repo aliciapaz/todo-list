@@ -1,3 +1,3 @@
 import header from "./header";
 
-body.appendChild(header());
+document.body.appendChild(header());
