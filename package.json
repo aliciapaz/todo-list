@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Simple to-do app built with JavaScript",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
@@ -39,6 +38,7 @@
     "webpack-cli": "^4.7.0"
   },
   "dependencies": {
-    "date-fns": "^2.21.3"
+    "date-fns": "^2.21.3",
+    "html-webpack-plugin": "^5.3.1"
   }
 }
