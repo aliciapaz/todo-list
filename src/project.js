@@ -1,5 +1,3 @@
-import {todoFactory} from "./todo.js";
-
 // prototype for project
 
 const projectProto = {
@@ -23,3 +21,5 @@ const projectFactory = (title, tasks = []) => {
   obj.title = title;
   return obj;
 };
+
+export { projectFactory }

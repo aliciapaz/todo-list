@@ -1,4 +1,3 @@
- 
 const header = () => {
   const titleHeader = document.createElement("header");
   titleHeader.className = "h1-container";
