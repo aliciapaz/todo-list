@@ -1,6 +1,8 @@
+import { format } from 'date-fns';
+
 // factory function for to-do
 const todoFactory = (title) => {
-
+ 
   // const setDate = () =>  handle dates
   // const updateStatus = 
   const setDescription = str => {
@@ -9,6 +11,7 @@ const todoFactory = (title) => {
   const setPriority = int => {
     this.priority = int;
   }
+
 
   const getDescription = () => this.description;
   const getPriority = () => this.priority;
@@ -21,3 +24,4 @@ const todoFactory = (title) => {
 // myTodo.title = "Water my plants"
 // myTodo.setPriority(1);
 // console.log(myTodo)
+export {todoFactory};
