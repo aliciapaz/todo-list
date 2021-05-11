@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 
-// Todo prototype 
+// To-do prototype 
 const todoProto = {
   setDescription(str) {
     this.description = str;
@@ -11,18 +11,22 @@ const todoProto = {
   getDescription() {
     return this.description;
   },
+  // setDate(date) {
+
+  // },
   getPriority() {
     return this.priority;
   },
   getDate() {
     return this.date;
-  }
+  },
+  // updateStatus() {
+    
+  // }
 }
 
-// factory function for to-do
+// factory function
 const todoFactory = (title) => {
-   // const setDate = () =>  handle dates
-  // const updateStatus = 
   let obj = Object.create(todoProto);
   obj.title = title;
   return obj
