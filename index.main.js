@@ -16,7 +16,7 @@
   \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ header)\n/* harmony export */ });\n \nconst header = () => {\n  const titleHeader = document.createElement(\"header\");\n  titleHeader.className = \"h1-container\";\n  \n  const h1Title = document.createElement(\"h1\");\n  h1Title.innerHTML = \"To do Organizer\";\n  titleHeader.appendChild(h1Title);\n\n  return titleHeader;\n\n};\n\n\n\n//# sourceURL=webpack://todo-list/./src/header.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ header)\n/* harmony export */ });\n \r\nconst header = () => {\r\n  const titleHeader = document.createElement(\"header\");\r\n  titleHeader.className = \"h1-container\";\r\n  \r\n  const hTitle = document.createElement(\"h1\");\r\n  hTitle.innerHTML = \"To do Organizer\";\r\n  titleHeader.appendChild(hTitle);\r\n\r\n  return titleHeader;\r\n\r\n};\r\n\r\n\n\n//# sourceURL=webpack://todo-list/./src/header.js?");
 
 /***/ }),
 
@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./header */ \"./src/header.js\");\n\n\nbody.appendChild((0,_header__WEBPACK_IMPORTED_MODULE_0__.default)());\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./header */ \"./src/header.js\");\n\r\n\r\ndocument.body.appendChild((0,_header__WEBPACK_IMPORTED_MODULE_0__.default)());\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
 
 /***/ })
 
