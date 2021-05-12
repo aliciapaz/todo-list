@@ -10,7 +10,7 @@ const projectProto = {
   },
   getTasks() {
     return this.tasks;
-  }
+  },
 }
 
 // factory function for project

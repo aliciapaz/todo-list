@@ -11,7 +11,7 @@ const panel = () => {
   const projectContainer = document.createElement("div");
   projectContainer.className = "project-container";
 
-  function getProjectsFromLS() {
+  const getProjectsFromLS = () => {
     if (localStorage.getItem("projects") === null) {
       projects = [];
     } else {
@@ -20,13 +20,29 @@ const panel = () => {
     return projects;
   }
 
-  function clearProjects() {
+  const clearProjects = () => {
     let projectsList = document.querySelector(".projects-ul");
     console.log(projectsList);
     projectsList.remove();
   }
 
-  function displayProjects() {
+  const createDeleteBtn = (project, projectLI) => {
+    let deleteBtn = document.createElement('button');
+    deleteBtn.innerHTML = "Delete";
+    projectLI.appendChild(deleteBtn);
+    deleteBtn.addEventListener('click', () => {
+      deleteProject(project);
+      displayProjects()
+    })
+  }
+
+  const deleteProject = (project) => {
+    deleteProjectLS(project);
+    const deletedProject = document.querySelector(`.project-li-${project.id}`)
+    deletedProject.remove();
+  }
+
+  const displayProjects = () => {
     if (projectContainer.children.length > 0) {
       clearProjects();
     }
@@ -35,8 +51,9 @@ const panel = () => {
     getProjectsFromLS();
     projects.forEach((project) => {
       let projectLink = document.createElement("li");
-      projectLink.className = "project-li";
+      projectLink.className = `project-li-${project.id}`;
       projectLink.innerHTML = project.title;
+      createDeleteBtn(project, projectLink);
       projectList.appendChild(projectLink);
     });
     projectContainer.appendChild(projectList);
@@ -74,15 +91,25 @@ const panel = () => {
 
   // Store project ls
 
-  function storeProjectLS(project) {
+  const storeProjectLS = (project) => {
     if (localStorage.getItem("projects") === null) {
       projects = [];
     } else {
       projects = JSON.parse(localStorage.getItem("projects"));
     }
-
     projects.push(project);
+    project.id = projects.indexOf(project);
+    localStorage.setItem("projects", JSON.stringify(projects));
 
+    return projects;
+  }
+
+  // Delete project from localstorage
+   
+  const deleteProjectLS = myProject => {
+    projects = JSON.parse(localStorage.getItem("projects"));
+    let projectIndex = projects.findIndex(project => myProject.title === project.title)
+    projects.splice(projectIndex, 1)
     localStorage.setItem("projects", JSON.stringify(projects));
 
     return projects;
