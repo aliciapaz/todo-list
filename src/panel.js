@@ -3,15 +3,17 @@ import { projectFactory } from './project'
 import { todoFactory } from "./todo.js";
 import './style.css';
 
-let projects = [] // import from localstorage
+
 
 const panel = () => {
+  let projects = []; 
   const element = document.createElement("aside");
   element.className = "side-panel";
 
   const projectContainer = document.createElement("div");
   projectContainer.className = "project-container";
   const projectList = document.createElement("ul");
+
   projects.forEach((project) => {
     let projectLink = document.createElement("li");
     projectLink.innerHTML = project.title;
@@ -23,7 +25,7 @@ const panel = () => {
   
   // New Project UI
   const newProjectBtn = document.createElement("p");
-  newProjectBtn.innerHTML = "New project"
+  newProjectBtn.innerHTML = "New project";
 
   const projectForm = document.createElement("form");
   projectForm.className = "projectModal"
@@ -41,8 +43,28 @@ const panel = () => {
   
   const newProject = (str) => {
     const myProject = projectFactory(str);
-    projects.push(myProject)
+
+    storeProjectLS(myProject);
+    
   }
+
+// Store project ls
+
+function storeProjectLS(project) {
+  
+  if(localStorage.getItem("projects") === null){
+    projects = [];
+  } else {
+    projects = JSON.parse(localStorage.getItem("projects"));
+  }
+
+  projects.push(project);
+  
+  localStorage.setItem("projects", JSON.stringify(projects));
+
+ return projects;
+}
+
 
   newProjectBtn.onclick = () => {
     projectForm.style.display = 'block';
@@ -51,7 +73,7 @@ const panel = () => {
   projectForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const title = projectForm.elements.title.value;
-    newProject(title)
+    newProject(title);
     projectForm.style.display = 'none';
   }); // add client-side validations for empty or too long strings
   
