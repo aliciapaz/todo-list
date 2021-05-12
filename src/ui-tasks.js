@@ -37,9 +37,9 @@ const toDos = (project) => {
     inputTitle.setAttribute("placeholder", "Task name");
 
     const inputDescription = document.createElement("input");
-    inputTitle.setAttribute("type", "text");
-    inputTitle.setAttribute("name", "description");
-    inputTitle.setAttribute("placeholder", "Description");
+    inputDescription.setAttribute("type", "text");
+    inputDescription.setAttribute("name", "description");
+    inputDescription.setAttribute("placeholder", "Description");
 
     const inputPriority = document.createElement("select");
     inputTitle.setAttribute("name", "priority");
@@ -64,9 +64,9 @@ const toDos = (project) => {
     
 
     const inputDate = document.createElement("input");
-    inputTitle.setAttribute("type", "date");
-    inputTitle.setAttribute("name", "date");
-    inputTitle.setAttribute("value", "yyyy-mm-dd");
+    inputDate.setAttribute("type", "date");
+    inputDate.setAttribute("name", "date");
+    inputDate.setAttribute("value", "yyyy-mm-dd");
       
     const submitBtn = document.createElement("input");
     submitBtn.setAttribute("type", "submit");
