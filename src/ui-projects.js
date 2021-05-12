@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import { projectFactory } from "./project";
 import { todoFactory } from "./todo.js";
+import { toDos } from "./ui-tasks"; 
 import "./style.css";
 
 const panel = () => {
@@ -32,8 +33,17 @@ const panel = () => {
     projectLI.appendChild(deleteBtn);
     deleteBtn.addEventListener('click', () => {
       deleteProject(project);
-      displayProjects()
-    })
+      displayProjects();
+    });
+  }
+
+  const createToDosBtn = (project, projectLI) => {
+    let toDosBtn = document.createElement('button');
+    toDosBtn.innerHTML = "ToDos";
+    projectLI.appendChild(toDosBtn);
+    toDosBtn.addEventListener('click', () => {
+      toDos(project);
+    });
   }
 
   const deleteProject = (project) => {
@@ -54,6 +64,7 @@ const panel = () => {
       projectLink.className = `project-li-${project.id}`;
       projectLink.innerHTML = project.title;
       createDeleteBtn(project, projectLink);
+      createToDosBtn(project, projectLink);
       projectList.appendChild(projectLink);
     });
     projectContainer.appendChild(projectList);
@@ -71,6 +82,7 @@ const panel = () => {
 
   const projectForm = document.createElement("form");
   projectForm.className = "projectModal";
+
   const inputTitle = document.createElement("input");
   inputTitle.setAttribute("type", "text");
   inputTitle.setAttribute("name", "title");
