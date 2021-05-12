@@ -1,25 +1,18 @@
-import { format } from 'date-fns';
-import { projectFactory } from './project'
+import { format } from "date-fns";
+import { projectFactory } from "./project";
 import { todoFactory } from "./todo.js";
-import './style.css';
-
-
+import "./style.css";
 
 const panel = () => {
-  let projects = []; 
+  let projects = [];
   const element = document.createElement("aside");
   element.className = "side-panel";
 
   const projectContainer = document.createElement("div");
   projectContainer.className = "project-container";
-  const projectList = document.createElement("ul");
-  projectList.className = "projects-ul";
-  
-
-
 
   function getProjectsFromLS() {
-    if(localStorage.getItem("projects") === null){
+    if (localStorage.getItem("projects") === null) {
       projects = [];
     } else {
       projects = JSON.parse(localStorage.getItem("projects"));
@@ -27,93 +20,90 @@ const panel = () => {
     return projects;
   }
 
-  function displayProjects(){
-    getProjectsFromLS();   
- 
+  function clearProjects() {
+    let projectsList = document.querySelector(".projects-ul");
+    console.log(projectsList);
+    projectsList.remove();
+  }
+
+  function displayProjects() {
+    if (projectContainer.children.length > 0) {
+      clearProjects();
+    }
+    const projectList = document.createElement("ul");
+    projectList.className = "projects-ul";
+    getProjectsFromLS();
     projects.forEach((project) => {
-      
       let projectLink = document.createElement("li");
       projectLink.className = "project-li";
       projectLink.innerHTML = project.title;
       projectList.appendChild(projectLink);
     });
-  
+    projectContainer.appendChild(projectList);
   }
 
- 
+  if (localStorage.getItem("projects") != null) {
+    displayProjects();
+  }
 
-  projectContainer.appendChild(projectList);
   element.appendChild(projectContainer);
-  
+
   // New Project UI
   const newProjectBtn = document.createElement("p");
   newProjectBtn.innerHTML = "New project";
 
   const projectForm = document.createElement("form");
-  projectForm.className = "projectModal"
+  projectForm.className = "projectModal";
   const inputTitle = document.createElement("input");
   inputTitle.setAttribute("type", "text");
   inputTitle.setAttribute("name", "title");
   inputTitle.setAttribute("placeholder", "Project name");
-  
+
   const submitBtn = document.createElement("input");
   submitBtn.setAttribute("type", "submit");
   submitBtn.setAttribute("value", "OK");
 
   projectForm.appendChild(inputTitle);
   projectForm.appendChild(submitBtn);
-  
+
   const newProject = (str) => {
     const myProject = projectFactory(str);
 
     storeProjectLS(myProject);
-    
+  };
+
+  // Store project ls
+
+  function storeProjectLS(project) {
+    if (localStorage.getItem("projects") === null) {
+      projects = [];
+    } else {
+      projects = JSON.parse(localStorage.getItem("projects"));
+    }
+
+    projects.push(project);
+
+    localStorage.setItem("projects", JSON.stringify(projects));
+
+    return projects;
   }
-
-// Store project ls
-
-function storeProjectLS(project) {
-  
-  if(localStorage.getItem("projects") === null){
-    projects = [];
-  } else {
-    projects = JSON.parse(localStorage.getItem("projects"));
-  }
-
-  projects.push(project);
-  
-  localStorage.setItem("projects", JSON.stringify(projects));
-
- return projects;
-}
-
 
   newProjectBtn.onclick = () => {
-    projectForm.style.display = 'block';
-  }
+    projectForm.style.display = "block";
+  };
 
-  // function clearProjects(){
-  //   let projectsList = document.getElementByClassName("projects-ul");
-  //   projectsList.remove();    
-  // };
-
-
-  projectForm.addEventListener('submit', (e) => {
+  projectForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const title = projectForm.elements.title.value;
     newProject(title);
-    projectForm.style.display = 'none';
-    // clearProjects();
+    projectForm.style.display = "none";
     displayProjects();
-
   }); // add client-side validations for empty or too long strings
-  
+
   element.appendChild(newProjectBtn);
   element.appendChild(projectForm);
 
   return element;
 };
 
-export { panel as default }
-
-
+export { panel as default };
