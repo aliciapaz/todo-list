@@ -22,4 +22,4 @@ const projectFactory = (title, tasks = []) => {
   return obj;
 };
 
-export { projectFactory }
+export { projectFactory, projectProto }

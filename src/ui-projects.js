@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { projectFactory } from "./project";
+import { projectFactory, projectProto } from "./project";
 import { todoFactory } from "./todo.js";
 import { toDos } from "./ui-tasks"; 
 import "./style.css";
@@ -23,7 +23,6 @@ const panel = () => {
 
   const clearProjects = () => {
     let projectsList = document.querySelector(".projects-ul");
-    console.log(projectsList);
     projectsList.remove();
   }
 
@@ -42,7 +41,7 @@ const panel = () => {
     toDosBtn.innerHTML = "ToDos";
     projectLI.appendChild(toDosBtn);
     toDosBtn.addEventListener('click', () => {
-      toDos(project);
+      document.body.appendChild(toDos(project));
     });
   }
 
@@ -60,6 +59,7 @@ const panel = () => {
     projectList.className = "projects-ul";
     getProjectsFromLS();
     projects.forEach((project) => {
+      Object.setPrototypeOf(project, projectProto)
       let projectLink = document.createElement("li");
       projectLink.className = `project-li-${project.id}`;
       projectLink.innerHTML = project.title;

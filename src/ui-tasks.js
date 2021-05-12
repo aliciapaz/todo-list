@@ -1,10 +1,9 @@
 import { format } from "date-fns";
 import { todoFactory } from "./todo.js";
-import { projectFactory } from "./project";
+import { projectFactory, projectProto } from "./project";
 import "./style.css";
 
 const toDos = (project) => {
-  console.log(Object.getPrototypeOf(project));
  let projectTasks = project.getTasks();
 
   const displayTodos = () => {
@@ -22,8 +21,7 @@ const toDos = (project) => {
             
     });
 
-
-    task.id = projectTasks.indexOf(task);
+   //task.id = projectTasks.indexOf(task);
 
     // New task
 
@@ -80,13 +78,14 @@ const toDos = (project) => {
     taskForm.appendChild(inputDate);
     taskForm.appendChild(submitBtn);
     
-  
+    container.appendChild(newTaskBtn);
     container.appendChild(taskForm);
 
     return container;
-
   
   }
+
+  return displayTodos();
 };
 
 export { toDos };
