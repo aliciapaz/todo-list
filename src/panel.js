@@ -13,12 +13,34 @@ const panel = () => {
   const projectContainer = document.createElement("div");
   projectContainer.className = "project-container";
   const projectList = document.createElement("ul");
+  projectList.className = "projects-ul";
+  
 
-  projects.forEach((project) => {
-    let projectLink = document.createElement("li");
-    projectLink.innerHTML = project.title;
-    projectList.appendChild(projectLink);
-  });
+
+
+  function getProjectsFromLS() {
+    if(localStorage.getItem("projects") === null){
+      projects = [];
+    } else {
+      projects = JSON.parse(localStorage.getItem("projects"));
+    }
+    return projects;
+  }
+
+  function displayProjects(){
+    getProjectsFromLS();   
+ 
+    projects.forEach((project) => {
+      
+      let projectLink = document.createElement("li");
+      projectLink.className = "project-li";
+      projectLink.innerHTML = project.title;
+      projectList.appendChild(projectLink);
+    });
+  
+  }
+
+ 
 
   projectContainer.appendChild(projectList);
   element.appendChild(projectContainer);
@@ -70,11 +92,20 @@ function storeProjectLS(project) {
     projectForm.style.display = 'block';
   }
 
+  // function clearProjects(){
+  //   let projectsList = document.getElementByClassName("projects-ul");
+  //   projectsList.remove();    
+  // };
+
+
   projectForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const title = projectForm.elements.title.value;
     newProject(title);
     projectForm.style.display = 'none';
+    // clearProjects();
+    displayProjects();
+
   }); // add client-side validations for empty or too long strings
   
   element.appendChild(newProjectBtn);
