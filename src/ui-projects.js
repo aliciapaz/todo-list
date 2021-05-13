@@ -42,6 +42,8 @@ const panel = () => {
     toDosBtn.innerHTML = "ToDos";
     projectLI.appendChild(toDosBtn);
     toDosBtn.addEventListener('click', () => {
+      let todosContainer = document.querySelector('.todos-container')
+      if (todosContainer) { todosContainer.remove() };
       document.body.appendChild(toDos(project));
     });
   }
@@ -50,6 +52,7 @@ const panel = () => {
     deleteProjectLS(project);
     const deletedProject = document.querySelector(`.project-li-${project.id}`)
     deletedProject.remove();
+    location.reload()
   }
 
   const displayProjects = () => {
