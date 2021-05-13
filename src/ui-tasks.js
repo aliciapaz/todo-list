@@ -81,6 +81,43 @@ const toDos = (project) => {
     container.appendChild(newTaskBtn);
     container.appendChild(taskForm);
 
+
+    // display tasks
+
+
+    // Update project ls
+
+    const updateProjectLS = (project) => {
+      if (localStorage.getItem("projects") === null) {
+        projects = [];
+      } else {
+        projects = JSON.parse(localStorage.getItem("projects"));
+      }
+      let indexProject = projects.indexOf(project);
+      projects[indexProject] = project;     
+      localStorage.setItem("projects", JSON.stringify(projects));
+    }
+
+    
+
+    taskForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const title = taskForm.elements.title.value;
+      const description = taskForm.elements.description.value; 
+      const priority = taskForm.elements.priority.value;
+      const date = taskForm.elements.date.value;
+
+      let myTask = todoFactory(title, description, priority, date);
+      project.addTask(myTask);
+
+      updateProjectLS(project); 
+
+    });
+
+
+
+
+
     return container;
   
   }
