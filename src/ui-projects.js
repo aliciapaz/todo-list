@@ -28,8 +28,10 @@ const panel = () => {
   }
 
   const createDeleteBtn = (project, projectLI) => {
-    let deleteBtn = document.createElement('button');
-    deleteBtn.innerHTML = "Delete";
+    let deleteBtn = document.createElement("button")
+    let deleteIcon = document.createElement("i");
+    deleteIcon.className = "fas fa-trash";
+    deleteBtn.appendChild(deleteIcon);
     projectLI.appendChild(deleteBtn);
     deleteBtn.addEventListener('click', () => {
       deleteProject(project);
@@ -39,6 +41,7 @@ const panel = () => {
 
   const createToDosBtn = (project, projectLI) => {
     let toDosBtn = document.createElement('button');
+    let toDoIcon = document.createElement('i'); // add icon for to do 
     toDosBtn.innerHTML = "ToDos";
     projectLI.appendChild(toDosBtn);
     toDosBtn.addEventListener('click', () => {
@@ -85,7 +88,7 @@ const panel = () => {
   newProjectBtn.innerHTML = "New project";
 
   const projectForm = document.createElement("form");
-  projectForm.className = "projectModal";
+  projectForm.className = "project-form";
 
   const inputTitle = document.createElement("input");
   inputTitle.setAttribute("type", "text");
@@ -131,9 +134,18 @@ const panel = () => {
     return projects;
   }
 
+
   newProjectBtn.onclick = () => {
     projectForm.style.display = "block";
+
   };
+
+
+  // window.onclick = (event) => {
+  //   if (event.target === projectForm) {
+  //     projectForm.style.display = 'none';
+  //   }
+  // }; 
 
   projectForm.addEventListener("submit", (e) => {
     e.preventDefault();
