@@ -7,30 +7,6 @@ const toDos = (project) => {
   const element = document.createElement("div");
   element.className = "todos-container"
 
-  const displayTodos = (project) => {
-    clearTasks();
-    const projectTasks = project.getTasks();
-    
-    const container = document.createElement("div");
-    container.className = "toDos-div";
-
-    const projectTitle = document.createElement("h4");
-    projectTitle.innerHTML = project.title;
-
-    const ulContainer = document.createElement("ul");
-    ulContainer.className = "ul-container";
-
-    projectTasks.forEach((task) => {
-      let taskLink = document.createElement("li");
-      taskLink.className = `task-li-${task.id}`;
-      taskLink.innerHTML = task.title;
-      ulContainer.appendChild(taskLink);
-    });
-    container.appendChild(projectTitle);
-    container.appendChild(ulContainer);
-    document.body.appendChild(container);
-  };
-
   const clearTasks = () => {
     let tasksList = document.querySelector(".toDos-div");
     if (tasksList) {tasksList.remove()}
@@ -97,8 +73,6 @@ const toDos = (project) => {
   element.appendChild(formContainer);
 
 
-  // display tasks
-
   // Update project ls
   const updateProjectLS = (project) => {
     let projects;
@@ -122,7 +96,8 @@ const toDos = (project) => {
     project.addTask(myTask);
     updateProjectLS(project);
     taskForm.parentNode.style.display = "none";
-    displayTodos(project);
+    clearTasks()
+    document.body.appendChild(project.displayTasks());
   });
 
   return element;

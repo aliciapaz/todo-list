@@ -56,7 +56,7 @@ const panel = () => {
     toDosShowBtn.innerHTML = "Show";
     projectLI.appendChild(toDosShowBtn);
      toDosShowBtn.addEventListener('click', () => {
-       let todos = document.querySelector('.toDos-div')
+      let todos = document.querySelector('.toDos-div')
      if (todos !== null) {
         todos.remove();
       } 
@@ -151,12 +151,10 @@ const panel = () => {
     return projects;
   }
 
-
   newProjectBtn.onclick = () => {
     projectForm.style.display = "block";
 
   };
-
 
   // window.onclick = (event) => {
   //   if (event.target === projectForm) {
