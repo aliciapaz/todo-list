@@ -42,7 +42,7 @@ const panel = () => {
   const createToDosBtn = (project, projectLI) => {
     let toDosBtn = document.createElement('button');
     let toDoIcon = document.createElement('i'); // add icon for to do 
-    toDosBtn.innerHTML = "ToDos";
+    toDosBtn.innerHTML = "Add task";
     projectLI.appendChild(toDosBtn);
     toDosBtn.addEventListener('click', () => {
       let todosContainer = document.querySelector('.todos-container')
@@ -51,12 +51,27 @@ const panel = () => {
     });
   }
 
+  const createShowProjectTasksButton = (project, projectLI) => {
+    let toDosShowBtn = document.createElement('button');
+    toDosShowBtn.innerHTML = "Show";
+    projectLI.appendChild(toDosShowBtn);
+     toDosShowBtn.addEventListener('click', () => {
+       let todosContainer = document.querySelector('.todos-container')
+    // if (projectContainer.children.length > 0) {
+    //    clear();
+    //  } 
+       document.body.appendChild(project.displayTasks());
+     });
+  }
+
+
   const deleteProject = (project) => {
     deleteProjectLS(project);
     const deletedProject = document.querySelector(`.project-li-${project.id}`)
     deletedProject.remove();
     location.reload()
   }
+
 
   const displayProjects = () => {
     if (projectContainer.children.length > 0) {
@@ -72,6 +87,7 @@ const panel = () => {
       projectLink.innerHTML = project.title;
       createDeleteBtn(project, projectLink);
       createToDosBtn(project, projectLink);
+      createShowProjectTasksButton(project, projectLink);
       projectList.appendChild(projectLink);
     });
     projectContainer.appendChild(projectList);
