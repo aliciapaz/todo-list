@@ -56,11 +56,12 @@ const panel = () => {
     toDosShowBtn.innerHTML = "Show";
     projectLI.appendChild(toDosShowBtn);
      toDosShowBtn.addEventListener('click', () => {
-       let todosContainer = document.querySelector('.todos-container')
-    // if (projectContainer.children.length > 0) {
-    //    clear();
-    //  } 
+       let todos = document.querySelector('.ul-container')
+     if (todos !== null) {
+        remove();
+      } 
        document.body.appendChild(project.displayTasks());
+      //  location.reload();
      });
   }
 
@@ -69,7 +70,7 @@ const panel = () => {
     deleteProjectLS(project);
     const deletedProject = document.querySelector(`.project-li-${project.id}`)
     deletedProject.remove();
-    location.reload()
+    location.reload();
   }
 
 
