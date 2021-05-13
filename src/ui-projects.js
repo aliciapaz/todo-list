@@ -117,14 +117,7 @@ const panel = () => {
 
   newProjectBtn.onclick = () => {
     projectForm.style.display = "block";
-
   };
-
-  // window.onclick = (event) => {
-  //   if (event.target === projectForm) {
-  //     projectForm.style.display = 'none';
-  //   }
-  // }; 
 
   projectForm.addEventListener("submit", (e) => {
     e.preventDefault();

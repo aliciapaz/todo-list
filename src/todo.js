@@ -2,7 +2,6 @@ import { format } from 'date-fns';
 
 // To-do prototype 
 const todoProto = {
-
   setDescription(str) {
     this.description = str;
   },

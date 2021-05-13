@@ -1,10 +1,12 @@
 import { updateProjectLS } from "./localstorage"
+import { form } from "./form";
 
 // prototype for project
 
 const projectProto = {
   addTask(task) {
     this.tasks.push(task);
+    task.id = this.tasks.indexOf(task);
   },
   deleteTask(taskTitle) {
     const taskIndex = this.tasks.findIndex((task) => task.title === taskTitle);
@@ -28,16 +30,33 @@ const projectProto = {
 
     projectTasks.forEach((task) => {
       let taskLink = document.createElement("li");
+      
       let taskDelete = document.createElement("button");
       let trashIcon = document.createElement("i");
       trashIcon.className = "fas fa-trash";
+      taskDelete.appendChild(trashIcon);
+      
+      let taskUpdate = document.createElement("button")
+      let updateIcon = document.createElement("i");
+      updateIcon.className = "fas fa-pencil-alt";
+      taskUpdate.appendChild(updateIcon);
+      
       taskLink.className = `task-li-${task.id}`;
       taskLink.innerHTML = task.title;
-      taskDelete.appendChild(trashIcon);
-      taskLink.onclick = () => {
+      
+      taskDelete.onclick = () => {
         this.deleteTask(task.title)
-        // this.displayTasks();
+        updateProjectLS(this);
+        const taskElement = document.querySelector(`.task-li-${task.id}`);
+        taskElement.remove();
       }
+
+      taskUpdate.onclick = () => {
+        let taskForm = document.querySelector("todos-container")
+        console.log(taskForm) 
+      }
+
+      taskLink.appendChild(taskUpdate);
       taskLink.appendChild(taskDelete);
       ulContainer.appendChild(taskLink);
     });
