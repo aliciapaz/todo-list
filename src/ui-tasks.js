@@ -42,7 +42,7 @@ const toDos = (project) => {
     inputDescription.setAttribute("placeholder", "Description");
 
     const inputPriority = document.createElement("select");
-    inputTitle.setAttribute("name", "priority");
+    inputPriority.setAttribute("name", "priority");
 
     const optionOne = document.createElement("option")
     optionOne.setAttribute("value", "1");
@@ -88,19 +88,17 @@ const toDos = (project) => {
     // Update project ls
 
     const updateProjectLS = (project) => {
+      let projects;
       if (localStorage.getItem("projects") === null) {
         projects = [];
       } else {
         projects = JSON.parse(localStorage.getItem("projects"));
       }
-      let indexProject = projects.indexOf(project);
-      projects[indexProject] = project;     
+      projects[project.id] = project;     
       localStorage.setItem("projects", JSON.stringify(projects));
     }
 
-    
-
-    taskForm.addEventListener("submit", (e) => {
+      taskForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const title = taskForm.elements.title.value;
       const description = taskForm.elements.description.value; 
@@ -109,10 +107,9 @@ const toDos = (project) => {
 
       let myTask = todoFactory(title, description, priority, date);
       project.addTask(myTask);
-
       updateProjectLS(project); 
-
-    });
+      taskForm.parentNode.style.display = "none";
+    }); 
 
 
 
