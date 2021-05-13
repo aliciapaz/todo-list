@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import { todoFactory } from "./todo.js";
 import { projectFactory, projectProto } from "./project";
+import { updateProjectLS } from "./localstorage"
 import "./style.css";
 
 const toDos = (project) => {
@@ -71,19 +72,6 @@ const toDos = (project) => {
   formContainer.appendChild(taskForm);
 
   element.appendChild(formContainer);
-
-
-  // Update project ls
-  const updateProjectLS = (project) => {
-    let projects;
-    if (localStorage.getItem("projects") === null) {
-      projects = [];
-    } else {
-      projects = JSON.parse(localStorage.getItem("projects"));
-    }
-    projects[project.id] = project;
-    localStorage.setItem("projects", JSON.stringify(projects));
-  };
 
   taskForm.addEventListener("submit", (e) => {
     e.preventDefault();
