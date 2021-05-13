@@ -56,12 +56,12 @@ const panel = () => {
     toDosShowBtn.innerHTML = "Show";
     projectLI.appendChild(toDosShowBtn);
      toDosShowBtn.addEventListener('click', () => {
-       let todos = document.querySelector('.ul-container')
+       let todos = document.querySelector('.toDos-div')
      if (todos !== null) {
-        remove();
+        todos.remove();
       } 
        document.body.appendChild(project.displayTasks());
-      //  location.reload();
+      
      });
   }
 
