@@ -1,3 +1,59 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main-container {
+  margin: 1rem;
+}
+
+.projects-ul  {
+  padding: 0.5rem;
+}
 .project-form {
   display: none;
+}
+h1 {
+  text-align: center;
+}
+
+.toDos-div {
+  max-width: fit-content;
+}
+.ul-container, h4, .showTaskUl {
+  text-align: center;
+  padding: 0.5rem;
+  width: 300px;
+  
+}
+
+.todos-container {
+  position: absolute;
+  top: 10%;
+  left: 40%;
+}
+
+li {
+  padding: 0.5rem;
+  list-style: none;
+}
+
+button {
+  margin: 0.2rem;
+}
+
+p {
+  cursor: pointer;
+}
+
+.task-modal {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 200px;
+}
+
+.side-panel {
+  width: 30%;
 }

@@ -4,6 +4,10 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import header from "./header";
 import panel from "./ui-projects"
 
-document.body.appendChild(header());
-document.body.appendChild(panel());
+let mainContainer = document.createElement("div");
+mainContainer.className = "main-container";
+
+document.body.appendChild(mainContainer);
+mainContainer.appendChild(header());
+mainContainer.appendChild(panel());
 
