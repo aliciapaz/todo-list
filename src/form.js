@@ -50,5 +50,25 @@ const form = () => {
 
   return taskForm;
 }
+
+const newProjectForm = () => {
+  const projectForm = document.createElement("form");
+  projectForm.className = "project-form";
+
+  const inputTitle = document.createElement("input");
+  inputTitle.setAttribute("type", "text");
+  inputTitle.setAttribute("name", "title");
+  inputTitle.setAttribute("placeholder", "Project name");
+
+  const submitBtn = document.createElement("input");
+  submitBtn.setAttribute("type", "submit");
+  submitBtn.setAttribute("value", "OK");
+
+  projectForm.appendChild(inputTitle);
+  projectForm.appendChild(submitBtn);
+
+  return projectForm;
+
+}
  
-export { form }
+export { form, newProjectForm }

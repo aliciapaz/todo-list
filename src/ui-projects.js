@@ -3,6 +3,7 @@ import { projectFactory, projectProto } from "./project";
 import { getProjectsLS, addProjectLS, deleteProjectLS } from "./localstorage"
 import { todoFactory } from "./todo.js";
 import { toDos } from "./ui-tasks"; 
+import { newProjectForm } from "./form"
 import "./style.css";
 
 
@@ -94,20 +95,9 @@ const panel = () => {
   const newProjectBtn = document.createElement("p");
   newProjectBtn.innerHTML = "New project";
 
-  const projectForm = document.createElement("form");
-  projectForm.className = "project-form";
+  let projectForm = newProjectForm();
+  element.appendChild(projectForm);
 
-  const inputTitle = document.createElement("input");
-  inputTitle.setAttribute("type", "text");
-  inputTitle.setAttribute("name", "title");
-  inputTitle.setAttribute("placeholder", "Project name");
-
-  const submitBtn = document.createElement("input");
-  submitBtn.setAttribute("type", "submit");
-  submitBtn.setAttribute("value", "OK");
-
-  projectForm.appendChild(inputTitle);
-  projectForm.appendChild(submitBtn);
 
   const newProject = (str) => {
     const myProject = projectFactory(str);
