@@ -1,6 +1,6 @@
 const form = () => {
   const taskForm = document.createElement("form");
-  taskForm.className = "taskModal";
+  taskForm.className = "task-modal";
 
   const inputTitle = document.createElement("input");
   inputTitle.setAttribute("type", "text");

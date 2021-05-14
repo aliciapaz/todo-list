@@ -34,12 +34,6 @@ const toDos = (project) => {
   
   let addTaskBtn = document.querySelector(".add-task-btn")
   
-  // window.onclick = (event) => {
-  //   if (event.target !== taskForm && event.target !== addTaskBtn ) {
-  //     taskForm.parentNode.style.display = "none";
-  //   }
-  // }
-
   return element;
 };
 
