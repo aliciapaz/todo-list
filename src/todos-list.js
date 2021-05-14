@@ -52,26 +52,32 @@ const displayTasks = project => {
 
       taskForm.addEventListener("submit", (e) => {
         e.preventDefault();
+
         task.title = taskForm.elements.title.value;
         task.description = taskForm.elements.description.value;
         task.priority = taskForm.elements.priority.value;
         task.date = taskForm.elements.date.value;
-        updateProjectLS(project);
+        updateProjectLS(project);        
         taskForm.style.display = "none";
-        let tasksList = document.querySelector(".toDos-div");
-        if (tasksList) {tasksList.remove()}
+        // let tasksList = document.querySelector(".toDos-div");
+
+        // if (tasksList) {tasksList.remove()};
+
+       let taskT = document.querySelector(`.task-li-${task.id}`);
+       taskT.firstChild.innerHTML = task.title;
+
+
       });
     }
     return taskUpdate;
   }
 
-  const taskShow = (task, parentNode) => {
+  const taskShow = (task) => {
     let taskShow = document.createElement("button");
     taskShow.className = "showTask";
     taskShow.innerHTML = "Show";
     
-    parentNode.className = `task-li-${task.id}`;
-    parentNode.innerHTML = task.title;
+
     
     taskShow.onclick = () => {
       removeTaskDetail()
@@ -106,11 +112,18 @@ const displayTasks = project => {
   }
 
   projectTasks.forEach((task) => {
+
+
     let taskLink = document.createElement("li");
     let taskUpdateBtn = taskUpdate(project, task);
     let taskDeleteBtn = taskDelete(project, task);
-    let taskShowBtn = taskShow(task, taskLink);
+    let taskShowBtn = taskShow(task);
 
+    taskLink.className = `task-li-${task.id}`;
+    let taskTitle = document.createElement("span");
+    taskTitle.innerHTML = task.title;
+
+    taskLink.appendChild(taskTitle);
     taskLink.appendChild(taskUpdateBtn);
     taskLink.appendChild(taskDeleteBtn);
     taskLink.appendChild(taskShowBtn);
