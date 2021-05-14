@@ -1,5 +1,3 @@
-import { format } from 'date-fns';
-
 // To-do prototype 
 const todoProto = {
   setDescription(str) {
@@ -22,10 +20,6 @@ const todoProto = {
   getDate() {
     return this.date;
   },
-
-  // updateStatus() {
-    
-  // }
 }
 
 // factory function

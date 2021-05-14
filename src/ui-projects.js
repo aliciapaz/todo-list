@@ -1,11 +1,9 @@
-import { format } from "date-fns";
 import { projectFactory, projectProto } from "./project";
-import { getProjectsLS, addProjectLS, deleteProjectLS } from "./localstorage"
+import { getProjectsLS, addProjectLS, updateProjectLS, deleteProjectLS } from "./localstorage"
 import { todoFactory } from "./todo.js";
-import { toDos } from "./ui-tasks"; 
-import { newProjectForm } from "./form"
+import { form, newProjectForm } from "./form";
+import { displayTasks } from "./todos-list";
 import "./style.css";
-
 
 const panel = () => {
   let projects = [];
@@ -32,6 +30,38 @@ const panel = () => {
     });
   }
 
+  const toDos = (project) => {
+    const element = document.createElement("div");
+    element.className = "todos-container"
+  
+    const clearTasks = () => {
+      let tasksList = document.querySelector(".toDos-div");
+      if (tasksList) {tasksList.remove()}
+    }
+  
+    let taskForm = form()
+    element.appendChild(taskForm);
+  
+    taskForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const title = taskForm.elements.title.value;
+      const description = taskForm.elements.description.value;
+      const priority = taskForm.elements.priority.value;
+      const date = taskForm.elements.date.value;
+  
+      let myTask = todoFactory(title, description, priority, date);
+      project.addTask(myTask);
+      updateProjectLS(project);
+      taskForm.parentNode.style.display = "none";
+      clearTasks()
+      document.body.appendChild(displayTasks(project));
+    });
+    
+    let addTaskBtn = document.querySelector(".add-task-btn")
+    
+    return element;
+  };
+
   const createToDosBtn = (project, projectLI) => {
     let toDosBtn = document.createElement('button');
     toDosBtn.className = "add-task-btn"
@@ -53,7 +83,7 @@ const panel = () => {
      if (todos !== null) {
         todos.remove();
       } 
-       document.body.appendChild(project.displayTasks());
+       document.body.appendChild(displayTasks(project));
       
      });
   }
