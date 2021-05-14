@@ -16,7 +16,6 @@ const projectProto = {
     return this.tasks;
   },
 
-
   displayTasks() {
     const projectTasks = this.tasks;
 
@@ -54,6 +53,8 @@ const projectProto = {
         updateProjectLS(this);
         const taskElement = document.querySelector(`.task-li-${task.id}`);
         taskElement.remove();
+        let taskTitle = document.querySelector(".showTaskLi")
+        if (taskTitle && taskTitle.innerHTML === `Title: ${task.title}`) {removeTaskDetail();}
       }
 
       taskUpdate.onclick = () => {
@@ -63,10 +64,7 @@ const projectProto = {
 
       taskShow.onclick = () => {
         // console.log(task.description);
-        let getUl = document.querySelector(".showTaskUl");
-        if( getUl  ) {
-          getUl.remove();
-        }
+        removeTaskDetail()
 
        const showTaskUl = document.createElement("ul");
        showTaskUl.className = "showTaskUl";
@@ -106,6 +104,13 @@ const projectProto = {
     return container;
   },
 };
+
+const removeTaskDetail = () => {
+  let getUl = document.querySelector(".showTaskUl");
+  if( getUl  ) {
+    getUl.remove();
+  }
+}
 
 // factory function for project
 
