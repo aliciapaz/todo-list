@@ -16,6 +16,7 @@ const projectProto = {
     return this.tasks;
   },
 
+
   displayTasks() {
     const projectTasks = this.tasks;
 
@@ -36,10 +37,14 @@ const projectProto = {
       trashIcon.className = "fas fa-trash";
       taskDelete.appendChild(trashIcon);
       
-      let taskUpdate = document.createElement("button")
+      let taskUpdate = document.createElement("button");
       let updateIcon = document.createElement("i");
       updateIcon.className = "fas fa-pencil-alt";
       taskUpdate.appendChild(updateIcon);
+
+      let taskShow = document.createElement("button");
+      taskShow.className = "showTask";
+      taskShow.innerHTML = "Show";
       
       taskLink.className = `task-li-${task.id}`;
       taskLink.innerHTML = task.title;
@@ -53,11 +58,46 @@ const projectProto = {
 
       taskUpdate.onclick = () => {
         let taskForm = document.querySelector("todos-container")
-        console.log(taskForm) 
+        console.log(taskForm); 
+      }
+
+      taskShow.onclick = () => {
+        // console.log(task.description);
+        let getUl = document.querySelector(".showTaskUl");
+        if( getUl  ) {
+          getUl.remove();
+        }
+
+       const showTaskUl = document.createElement("ul");
+       showTaskUl.className = "showTaskUl";
+
+       const taskTitle = document.createElement("li");
+       taskTitle.className = "showTaskLi";
+       taskTitle.innerHTML = `Title: ${task.title}`;
+       
+       const taskDescription = document.createElement("li");
+       taskDescription.className = "showTaskLi";
+       taskDescription.innerHTML = `Description: ${task.description}`;       
+       
+       const taskPriority = document.createElement("li");
+       taskPriority.className = "showTaskLi";
+       taskPriority.innerHTML = `Priority: ${task.priority}`;       
+       
+       const taskDate = document.createElement("li");
+       taskDate.className = "showTaskLi";
+       taskDate.innerHTML = `Date: ${task.date}`;
+
+       showTaskUl.appendChild(taskTitle);
+       showTaskUl.appendChild(taskDescription);
+       showTaskUl.appendChild(taskPriority);
+       showTaskUl.appendChild(taskDate);
+
+       document.body.appendChild(showTaskUl);
       }
 
       taskLink.appendChild(taskUpdate);
       taskLink.appendChild(taskDelete);
+      taskLink.appendChild(taskShow);
       ulContainer.appendChild(taskLink);
     });
     container.appendChild(projectTitle);
