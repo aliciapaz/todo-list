@@ -139,11 +139,11 @@ const panel = () => {
     projectForm.style.display = "block";
   };
 
-  //   window.onclick = (event) => {
-  //   if (event.target !== newProjectBtn && event.target !== projectForm.parentNode.children ) {
-  //     projectForm.style.display = "none";
-  //   }
-  // }
+     window.onclick = (event) => {
+     if (event.target !== newProjectBtn && event.target !== projectForm.firstChild &&  event.target !== projectForm.parentNode.children ) {
+       projectForm.style.display = "none";
+     }
+   }
 
   projectForm.addEventListener("submit", (e) => {
     e.preventDefault();
