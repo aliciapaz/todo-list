@@ -13,10 +13,6 @@ h1 {
   text-align: center;
 }
 
-li {
-  list-style: none;
-  }
-
 /* side panel */
 
 .side-panel {
@@ -55,32 +51,38 @@ li {
   width: 100%;
 }
 
-
-.side-panel button {
+button {
   margin: 0.2rem;
   padding: 0.2rem;
-  background-color: #f9ed69;
   border: none;
 }
 
+.side-panel button {
+  background-color: #f9ed69;
+}
 
 .toDos-div {
   position: absolute;
-  padding: 2rem; 
+  top: 12rem;
+  left: 2rem;
+  padding: 2rem;
+  background-color: #f9ed69;
 }
-/* .ul-container, h4, .showTaskUl {
-  text-align: center;
-  width: 300px;
-  
-} */
+
+.toDos-div h4 {
+  padding-bottom: 1rem;
+}
+
+.toDos-div button {
+  background-color: #b83b5e;
+  color: #fff;
+}
 
 .todos-container {
   position: absolute;
-  top: 10%;
+  top: 15%;
   left: 40%;
 }
-
-
 
 
 .task-modal {
