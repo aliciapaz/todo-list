@@ -40,11 +40,12 @@ const displayTasks = project => {
     taskUpdate.appendChild(updateIcon);
 
     taskUpdate.onclick = () => {
-      let taskForm = document.querySelector(".task-modal")
-      if (taskForm) { taskForm.remove() }
-      document.body.appendChild(form())
-      taskForm = document.querySelector(".task-modal")
-      taskForm.className = "task-modal update-task"
+
+      let taskForm = document.querySelector(".task-modal");
+      if (taskForm) { taskForm.remove() };
+      document.body.appendChild(form());
+      taskForm = document.querySelector(".task-modal");
+      taskForm.className = "task-modal update-task";
       taskForm.elements.title.value = task.title;
       taskForm.elements.description.value = task.description;
       taskForm.elements.priority.value = task.priority;

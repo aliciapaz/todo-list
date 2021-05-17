@@ -31,8 +31,7 @@ const panel = () => {
   }
 
   const toDos = (project) => {
-    const element = document.createElement("div");
-    element.className = "todos-container"
+
   
     const clearTasks = () => {
       let tasksList = document.querySelector(".toDos-div");
@@ -40,7 +39,7 @@ const panel = () => {
     }
   
     let taskForm = form()
-    element.appendChild(taskForm);
+    document.body.appendChild(taskForm);
   
     taskForm.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -59,18 +58,23 @@ const panel = () => {
     
     let addTaskBtn = document.querySelector(".add-task-btn")
     
-    return element;
+    return taskForm;
   };
 
   const createToDosBtn = (project, projectLI) => {
+
     let toDosBtn = document.createElement('button');
     toDosBtn.className = "add-task-btn"
     toDosBtn.innerHTML = "Add task";
     projectLI.appendChild(toDosBtn);
     toDosBtn.addEventListener('click', () => {
       let todosContainer = document.querySelector('.todos-container')
-      if (todosContainer) { todosContainer.remove() };
-      document.body.appendChild(toDos(project));
+      
+
+       let taskForm = document.querySelector(".task-modal");
+       if (taskForm) { taskForm.remove() };
+      
+       document.body.appendChild(toDos(project));
     });
   }
 
