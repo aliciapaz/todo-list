@@ -74,8 +74,6 @@ const displayTasks = project => {
     taskShow.className = "showTask";
     taskShow.innerHTML = "Show";
     
-
-    
     taskShow.onclick = () => {
       removeTaskDetail()
 
@@ -104,6 +102,16 @@ const displayTasks = project => {
       showTaskUl.appendChild(taskDate);
 
       document.body.appendChild(showTaskUl);
+
+      window.onclick = (event) => {
+        if (event.target !== taskShow 
+            && event.target !== showTaskUl.childNodes[0]
+            && event.target !== showTaskUl.childNodes[1]
+            && event.target !== showTaskUl.childNodes[2]
+            && event.target !== showTaskUl.childNodes[3]) {
+          showTaskUl.style.display = "none";
+        }
+      }
     }
     return taskShow;
   }

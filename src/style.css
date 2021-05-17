@@ -78,7 +78,9 @@ button {
   color: #fff;
 }
 
-.task-modal {
+/* main content */
+
+.task-modal, .showTaskUl {
   display: flex;
   flex-direction: column;
   margin: 1rem auto;
@@ -90,7 +92,11 @@ button {
 }
 
 .showTaskUl {
-  color: black;
-  border: 1px solid black;
-  position: absolute;
+  background-color: #f08a5d;
+  line-height: 1.3rem;
+  padding: 1rem;
+}
+
+.showTaskUl li {
+  list-style: none;
 }
