@@ -84,7 +84,6 @@ const panel = () => {
         todos.remove();
       } 
        document.body.appendChild(displayTasks(project));
-      
      });
   }
 
@@ -122,7 +121,8 @@ const panel = () => {
   element.appendChild(projectContainer);
 
   // New Project UI
-  const newProjectBtn = document.createElement("p");
+  const newProjectBtn = document.createElement("div");
+  newProjectBtn.className = "new-project"
   newProjectBtn.innerHTML = "New project";
 
   let projectForm = newProjectForm();
@@ -153,8 +153,9 @@ const panel = () => {
     displayProjects();
   }); // add client-side validations for empty or too long strings
 
+  newProjectBtn.appendChild(projectForm);
   element.appendChild(newProjectBtn);
-  element.appendChild(projectForm);
+
 
   return element;
 };

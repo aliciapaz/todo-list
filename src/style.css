@@ -4,29 +4,75 @@
   box-sizing: border-box;
 }
 
-.main-container {
-  margin: 1rem;
+body {
+  background-color: #f9ed69;
+  font-family: 'Open Sans', sans-serif;
 }
 
-.projects-ul  {
-  padding: 0.5rem;
-}
-.project-form {
-  display: none;
-}
 h1 {
   text-align: center;
 }
 
-.toDos-div {
-  max-width: fit-content;
+li {
+  list-style: none;
+  }
+
+/* side panel */
+
+.side-panel {
+  padding: 1.5rem;
+  width: 30%;
+  height: 100%;
+  position: fixed;
+  background-color: #f08a5d;
+  color: #fff;
+  left: 0;
+  top: 0;
+} 
+
+.projects-ul  {
+  padding: 1.5rem;
+  background-color: #b83b5e;
 }
-.ul-container, h4, .showTaskUl {
+
+.projects-ul li {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  align-items: center;
+}
+
+.new-project  {
+  cursor: pointer;
+  padding: 1rem;
+  background-color: #6a2c70;
+}
+
+.project-form {
+  display: none;
+  font-size: 1.5rem;
+  width: 100%;
+}
+
+
+.side-panel button {
+  margin: 0.2rem;
+  padding: 0.2rem;
+  background-color: #f9ed69;
+  border: none;
+}
+
+
+.toDos-div {
+  position: absolute;
+  padding: 2rem; 
+}
+/* .ul-container, h4, .showTaskUl {
   text-align: center;
-  padding: 0.5rem;
   width: 300px;
   
-}
+} */
 
 .todos-container {
   position: absolute;
@@ -34,18 +80,8 @@ h1 {
   left: 40%;
 }
 
-li {
-  padding: 0.5rem;
-  list-style: none;
-}
 
-button {
-  margin: 0.2rem;
-}
 
-p {
-  cursor: pointer;
-}
 
 .task-modal {
   display: flex;
@@ -54,6 +90,3 @@ p {
   width: 200px;
 }
 
-.side-panel {
-  width: 30%;
-}
