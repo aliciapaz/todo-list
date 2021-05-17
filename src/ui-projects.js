@@ -44,11 +44,15 @@ const panel = () => {
     let addTaskBtn = document.querySelector(".add-task-btn")
 
     window.onclick = (event) => {
-      if (event.target !== addTaskBtn && event.target !== projectForm.children &&  event.target !== taskForm.parentNode.children ) {
+      if (event.target !== addTaskBtn 
+        && event.target !== taskForm.childNodes[0] 
+        && event.target !== taskForm.childNodes[1]
+        && event.target !== taskForm.childNodes[2]
+        && event.target !== taskForm.childNodes[3]
+        && event.target !== taskForm.childNodes[4]) {
         taskForm.style.display = "none";
       }
-    }
-
+    } 
   
     taskForm.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -60,7 +64,7 @@ const panel = () => {
       let myTask = todoFactory(title, description, priority, date);
       project.addTask(myTask);
       updateProjectLS(project);
-      taskForm.parentNode.style.display = "none";
+      taskForm.style.display = "none";
       clearTasks()
       document.body.appendChild(displayTasks(project));
     });
