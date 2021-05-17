@@ -40,6 +40,15 @@ const panel = () => {
   
     let taskForm = form()
     document.body.appendChild(taskForm);
+
+    let addTaskBtn = document.querySelector(".add-task-btn")
+
+    window.onclick = (event) => {
+      if (event.target !== addTaskBtn && event.target !== projectForm.children &&  event.target !== taskForm.parentNode.children ) {
+        taskForm.style.display = "none";
+      }
+    }
+
   
     taskForm.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -56,10 +65,13 @@ const panel = () => {
       document.body.appendChild(displayTasks(project));
     });
     
-    let addTaskBtn = document.querySelector(".add-task-btn")
+    
     
     return taskForm;
   };
+
+
+
 
   const createToDosBtn = (project, projectLI) => {
 

@@ -60,10 +60,6 @@ const displayTasks = project => {
         task.date = taskForm.elements.date.value;
         updateProjectLS(project);        
         taskForm.style.display = "none";
-        // let tasksList = document.querySelector(".toDos-div");
-
-        // if (tasksList) {tasksList.remove()};
-
        let taskT = document.querySelector(`.task-li-${task.id}`);
        taskT.firstChild.innerHTML = task.title;
 
