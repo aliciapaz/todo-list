@@ -9,6 +9,7 @@ import './style.css';
 
 const panel = () => {
   const query = document.querySelector.bind(document);
+
   const element = document.createElement('aside');
   element.className = 'side-panel';
 
@@ -41,6 +42,7 @@ const panel = () => {
     const taskForm = form();
     document.body.appendChild(taskForm);
 
+    // let addTaskBtn = document.querySelector(".add-task-btn")
     taskForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const title = taskForm.elements.title.value;
@@ -64,12 +66,24 @@ const panel = () => {
     toDosBtn.className = 'add-task-btn';
     toDosBtn.innerHTML = 'Add task';
     projectLI.appendChild(toDosBtn);
-    toDosBtn.addEventListener('click', () => {
-      const taskForm = query('.task-modal');
+    toDosBtn.onclick = () => {
+      let taskForm = query('.task-modal');
       if (taskForm) { taskForm.remove(); }
 
       document.body.appendChild(toDos(project));
-    });
+      let newTaskForm = query('.task-modal');
+
+      window.onclick = (event) => {
+        if (event.target !== toDosBtn
+          && event.target !== newTaskForm.childNodes[0] 
+          && event.target !== newTaskForm.childNodes[1]
+          && event.target !== newTaskForm.childNodes[2]
+          && event.target !== newTaskForm.childNodes[3]
+          && event.target !== newTaskForm.childNodes[4]) {
+            newTaskForm.style.display = "none";
+        }
+      }
+    };
   };
 
   const createShowProjectTasksButton = (project, projectLI) => {
