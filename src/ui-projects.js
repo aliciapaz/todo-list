@@ -29,29 +29,7 @@ const panel = () => {
     deleteProjectLS(project);
     const deletedProject = query(`.project-li-${project.id}`);
     deletedProject.remove();
-    location.reload();
-  };
-
-  const displayProjects = () => {
-    if (projectsContainer.children.length > 0) {
-      clearProjects();
-    }
-    const projectList = create('ul');
-    projectList.className = 'projects-ul';
-
-    const projects = getProjectsLS();
-
-    projects.forEach((project) => {
-      Object.setPrototypeOf(project, projectProto);
-      const projectLink = create('li');
-      projectLink.className = `project-li-${project.id}`;
-      projectLink.innerHTML = project.title;
-      createDeleteBtn(project, projectLink);
-      createToDosBtn(project, projectLink);
-      createShowProjectTasksButton(project, projectLink);
-      projectList.appendChild(projectLink);
-    });
-    projectsContainer.appendChild(projectList);
+    window.location.reload();
   };
 
   const createDeleteBtn = (project, projectLI) => {
@@ -62,7 +40,6 @@ const panel = () => {
     projectLI.appendChild(deleteBtn);
     deleteBtn.addEventListener('click', () => {
       deleteProject(project);
-      // displayProjects();
     });
   };
 
@@ -137,6 +114,28 @@ const panel = () => {
     });
   };
 
+  const displayProjects = () => {
+    if (projectsContainer.children.length > 0) {
+      clearProjects();
+    }
+    const projectList = create('ul');
+    projectList.className = 'projects-ul';
+
+    const projects = getProjectsLS();
+
+    projects.forEach((project) => {
+      Object.setPrototypeOf(project, projectProto);
+      const projectLink = create('li');
+      projectLink.className = `project-li-${project.id}`;
+      projectLink.innerHTML = project.title;
+      createDeleteBtn(project, projectLink);
+      createToDosBtn(project, projectLink);
+      createShowProjectTasksButton(project, projectLink);
+      projectList.appendChild(projectLink);
+    });
+    projectsContainer.appendChild(projectList);
+  };
+
   if (getProjectsLS().length === 0) {
     const defaultProject = projectFactory('To Do List');
     addProjectLS(defaultProject);
@@ -187,12 +186,12 @@ const panel = () => {
   element.appendChild(newProjectBtn);
 
   const displayDefault = () => {
-    let projects = getProjectsLS()
-    let defaultProject = projects[0]
-    document.body.appendChild(displayTasks(defaultProject))
-  }
+    const projects = getProjectsLS();
+    const defaultProject = projects[0];
+    document.body.appendChild(displayTasks(defaultProject));
+  };
 
-  displayDefault()
+  displayDefault();
   return element;
 };
 

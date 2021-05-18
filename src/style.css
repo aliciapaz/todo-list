@@ -24,9 +24,9 @@ h1 {
   color: #fff;
   left: 0;
   top: 0;
-} 
+}
 
-.projects-ul  {
+.projects-ul {
   padding: 1.5rem;
   background-color: #b83b5e;
 }
@@ -39,7 +39,7 @@ h1 {
   align-items: center;
 }
 
-.new-project  {
+.new-project {
   cursor: pointer;
   padding: 1rem;
   background-color: #6a2c70;
@@ -80,14 +80,16 @@ button {
 
 /* main content */
 
-.task-modal, .showTaskUl {
+.task-modal,
+.showTaskUl {
   display: flex;
   flex-direction: column;
   margin: 1rem auto;
   width: 400px;
 }
 
-.task-modal input, select {
+.task-modal input,
+select {
   padding: 0.3rem;
 }
 
