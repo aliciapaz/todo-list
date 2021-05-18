@@ -2,7 +2,7 @@
 
 >  Todo list project, rendered dynamically by DOM manipulation, and the use of modularized code using webpack.
 
-![screenshot](./src/images/)
+![screenshot](./src/images/captura.PNG)
 
 ## Built With
 
@@ -24,13 +24,15 @@ To get a local copy up and running follow these simple example steps.
 - Clone this repository using the link above (click on the 'code' button)
 - Open a terminal and `cd` to the cloned repository
 - run `npm install`
-- run`npm run build` 
+- run `npm run build` 
 
 
 ### Usage
 
-- Click on 'Add Task' in the default project
-- Click on 'new project' if you want to create a project
+- Click on  `Add Task` or `Show` or the delete icon  to navigate in To Do List project.
+- Click on `new project` if you want to create a project.
+- Click on `Add Task` or `Show` or the delete icon  to navigate in your projects.
+- Click on `Update` or `Show` or the delete icon  to navigate in your tasks.
 
 ### Deployment
 
@@ -54,7 +56,7 @@ To get a local copy up and running follow these simple example steps.
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/Rocio01/restaurant-page/issues).
+Feel free to check the [issues page](https://github.com/aliciapaz/todo-list/issues).
 
 ## Show your support
 
@@ -62,7 +64,7 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- [The Odin Project](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/javascript/lessons/restaurant-page)
+- [The Odin Project](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/javascript/lessons/todo-list)
 
 ## 📝 License
 
