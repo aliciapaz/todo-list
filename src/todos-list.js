@@ -59,7 +59,6 @@ const displayTasks = project => {
       && event.target !== taskForm.childNodes[1]
       && event.target !== taskForm.childNodes[2]
       && event.target !== taskForm.childNodes[3]) {
-      console.log(event.target)
       taskForm.style.display = "none";
      }
 
