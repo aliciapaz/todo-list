@@ -127,6 +127,12 @@ const displayTasks = (project) => {
       showTaskUl.appendChild(taskDate);
 
       document.body.appendChild(showTaskUl);
+
+      window.onclick = (event) => {
+        if (event.target !== showTaskUl &&  event.target !== taskShow) {
+         showTaskUl.style.display = "none";
+        }
+      }
     };
     return taskShow;
   };
