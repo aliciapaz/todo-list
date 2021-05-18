@@ -1,4 +1,5 @@
 import { updateProjectLS } from './localstorage';
+import { projectProto } from './project'
 import { form } from './form';
 
 const displayTasks = (project) => {
@@ -22,6 +23,7 @@ const displayTasks = (project) => {
   };
 
   const taskDelete = (project, task) => {
+    Object.setPrototypeOf(project, projectProto);
     const taskDelete = document.createElement('button');
     const trashIcon = document.createElement('i');
     trashIcon.className = 'fas fa-trash';
