@@ -61,7 +61,7 @@ button {
   background-color: #f9ed69;
 }
 
-.toDos-div {
+.tasks-container {
   position: absolute;
   top: 12rem;
   left: 2rem;
@@ -69,11 +69,11 @@ button {
   background-color: #f9ed69;
 }
 
-.toDos-div h4 {
+.tasks-container h4 {
   padding-bottom: 1rem;
 }
 
-.toDos-div button {
+.tasks-container button {
   background-color: #b83b5e;
   color: #fff;
 }
