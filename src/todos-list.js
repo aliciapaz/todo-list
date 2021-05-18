@@ -1,5 +1,5 @@
 import { updateProjectLS } from './localstorage';
-import { projectProto } from './project'
+import { projectProto } from './project';
 import { form } from './form';
 
 const displayTasks = (project) => {
@@ -81,8 +81,9 @@ const displayTasks = (project) => {
         updateProjectLS(project);
         taskForm.style.display = 'none';
         const taskT = document.querySelector(`.task-li-${task.id}`);
+        const taskBtns = document.querySelector(`.task-btns-${task.id}`);
         taskT.firstChild.innerHTML = task.title;
-        if (taskT.childNodes[1].tagName === 'TIME') { taskT.childNodes[1].innerHTML = task.date; }
+        if (taskBtns.childNodes[0].tagName === 'TIME') { taskBtns.childNodes[0].innerHTML = task.date; }
       });
     };
     return taskUpdate;
@@ -144,10 +145,12 @@ const displayTasks = (project) => {
   projectTasks.forEach((task) => {
     const { date, title } = task;
     const taskLink = document.createElement('li');
+    const btnsContainer = document.createElement('div');
     const taskUpdateBtn = taskUpdate(project, task);
     const taskDeleteBtn = taskDelete(project, task);
     const taskShowBtn = taskShow(task);
 
+    btnsContainer.className = `task-btns-${task.id}`;
     taskLink.className = `task-li-${task.id}`;
     const taskTitle = document.createElement('span');
     taskTitle.innerHTML = title;
@@ -157,12 +160,13 @@ const displayTasks = (project) => {
     if (date !== undefined) {
       const taskDue = document.createElement('time');
       taskDue.innerHTML = date;
-      taskLink.appendChild(taskDue);
+      btnsContainer.appendChild(taskDue);
     }
 
-    taskLink.appendChild(taskUpdateBtn);
-    taskLink.appendChild(taskDeleteBtn);
-    taskLink.appendChild(taskShowBtn);
+    btnsContainer.appendChild(taskUpdateBtn);
+    btnsContainer.appendChild(taskDeleteBtn);
+    btnsContainer.appendChild(taskShowBtn);
+    taskLink.appendChild(btnsContainer);
     ulContainer.appendChild(taskLink);
   });
 

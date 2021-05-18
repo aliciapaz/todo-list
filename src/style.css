@@ -63,10 +63,12 @@ button {
 
 .tasks-container {
   position: absolute;
-  left: 30%;
+  left: 32%;
+  top: 10%;
   padding: 2rem;
   background-color: #fff79e;
   z-index: -1;
+  width: 60%;
 }
 
 .tasks-container h4 {
@@ -76,6 +78,11 @@ button {
 .tasks-container button {
   background-color: #b83b5e;
   color: #fff;
+}
+
+.tasks-list li {
+  display: flex;
+  justify-content: space-between;
 }
 
 /* main content */
