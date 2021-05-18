@@ -34,10 +34,11 @@ const displayTasks = project => {
   // update Task
 
   const taskUpdate = (project, task) => {
+   
     let taskUpdate = document.createElement("button");
-    let updateIcon = document.createElement("i");
-    updateIcon.className = "fas fa-pencil-alt";
-    taskUpdate.appendChild(updateIcon);
+ 
+     taskUpdate.innerHTML = "Update";
+ 
 
     taskUpdate.onclick = () => {
 
@@ -50,6 +51,20 @@ const displayTasks = project => {
       taskForm.elements.description.value = task.description;
       taskForm.elements.priority.value = task.priority;
       taskForm.elements.date.value = task.date;
+
+
+   window.onclick = (event) => {
+     if(event.target !== taskForm &&  event.target !== taskUpdate
+      && event.target !== taskForm.childNodes[0]
+      && event.target !== taskForm.childNodes[1]
+      && event.target !== taskForm.childNodes[2]
+      && event.target !== taskForm.childNodes[3]) {
+      console.log(event.target)
+      taskForm.style.display = "none";
+     }
+
+     
+   }
 
       taskForm.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -123,6 +138,7 @@ const displayTasks = project => {
     let taskUpdateBtn = taskUpdate(project, task);
     let taskDeleteBtn = taskDelete(project, task);
     let taskShowBtn = taskShow(task);
+    
 
     taskLink.className = `task-li-${task.id}`;
     let taskTitle = document.createElement("span");
