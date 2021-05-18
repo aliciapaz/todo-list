@@ -11,7 +11,6 @@ const form = () => {
   inputTitle.setAttribute('maxlength', '50');
   inputTitle.required = true;
 
-
   const inputDescription = create('input');
   inputDescription.setAttribute('type', 'text');
   inputDescription.setAttribute('name', 'description');

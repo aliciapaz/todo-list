@@ -14,6 +14,13 @@ const displayTasks = (project) => {
 
   // delete Task
 
+  const removeTaskDetail = () => {
+    const getUl = document.querySelector('.showTaskUl');
+    if (getUl) {
+      getUl.remove();
+    }
+  };
+
   const taskDelete = (project, task) => {
     const taskDelete = document.createElement('button');
     const trashIcon = document.createElement('i');
@@ -34,40 +41,35 @@ const displayTasks = (project) => {
   // update Task
 
   const taskUpdate = (project, task) => {
-   
-    let taskUpdate = document.createElement("button");
- 
-     taskUpdate.innerHTML = "Update";
- 
+    const taskUpdate = document.createElement('button');
+
+    taskUpdate.innerHTML = 'Update';
 
     taskUpdate.onclick = () => {
-      let {
+      const {
         title, description, priority, date,
       } = task;
       let taskForm = document.querySelector('.task-modal');
       if (taskForm) { taskForm.remove(); }
       document.body.appendChild(form());
-      taskForm = document.querySelector(".task-modal");
-      taskForm.className = "task-modal update-task";
+      taskForm = document.querySelector('.task-modal');
+      taskForm.className = 'task-modal update-task';
       taskForm.elements.title.value = title;
       taskForm.elements.description.value = description;
       taskForm.elements.priority.value = priority;
       taskForm.elements.date.value = date;
 
-
-   window.onclick = (event) => {
-     if(event.target !== taskForm &&  event.target !== taskUpdate
+      window.onclick = (event) => {
+        if (event.target !== taskForm && event.target !== taskUpdate
       && event.target !== taskForm.childNodes[0]
       && event.target !== taskForm.childNodes[1]
       && event.target !== taskForm.childNodes[2]
       && event.target !== taskForm.childNodes[3]) {
-      taskForm.style.display = "none";
-     }
+          taskForm.style.display = 'none';
+        }
+      };
 
-     
-   }
-
-      taskForm.addEventListener("submit", (e) => {
+      taskForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
         task.title = taskForm.elements.title.value;
@@ -78,7 +80,7 @@ const displayTasks = (project) => {
         taskForm.style.display = 'none';
         const taskT = document.querySelector(`.task-li-${task.id}`);
         taskT.firstChild.innerHTML = task.title;
-       if (taskT.childNodes[1].tagName == 'TIME') {taskT.childNodes[1].innerHTML = task.date}
+        if (taskT.childNodes[1].tagName === 'TIME') { taskT.childNodes[1].innerHTML = task.date; }
       });
     };
     return taskUpdate;
@@ -90,7 +92,7 @@ const displayTasks = (project) => {
     taskShow.innerHTML = 'Show';
 
     taskShow.onclick = () => {
-      let {
+      const {
         title, description, priority, date,
       } = task;
       removeTaskDetail();
@@ -108,10 +110,10 @@ const displayTasks = (project) => {
 
       const taskPriority = document.createElement('li');
       taskPriority.className = 'showTaskLi';
-      if (priority == 1 ) {
+      if (priority === 1) {
         taskPriority.innerHTML = 'Priority: High';
       }
-      if (priority == 2 ) {
+      if (priority === 2) {
         taskPriority.innerHTML = 'Priority: Medium';
       } else {
         taskPriority.innerHTML = 'Priority: Low';
@@ -129,29 +131,28 @@ const displayTasks = (project) => {
       document.body.appendChild(showTaskUl);
 
       window.onclick = (event) => {
-        if (event.target !== showTaskUl &&  event.target !== taskShow) {
-         showTaskUl.style.display = "none";
+        if (event.target !== showTaskUl && event.target !== taskShow) {
+          showTaskUl.style.display = 'none';
         }
-      }
+      };
     };
     return taskShow;
   };
 
   projectTasks.forEach((task) => {
-    const { date, title } = task
+    const { date, title } = task;
     const taskLink = document.createElement('li');
     const taskUpdateBtn = taskUpdate(project, task);
     const taskDeleteBtn = taskDelete(project, task);
     const taskShowBtn = taskShow(task);
-    
+
     taskLink.className = `task-li-${task.id}`;
     const taskTitle = document.createElement('span');
     taskTitle.innerHTML = title;
-    
-    
+
     taskLink.appendChild(taskTitle);
-    
-    if (date != undefined) {
+
+    if (date !== undefined) {
       const taskDue = document.createElement('time');
       taskDue.innerHTML = date;
       taskLink.appendChild(taskDue);
@@ -162,13 +163,6 @@ const displayTasks = (project) => {
     taskLink.appendChild(taskShowBtn);
     ulContainer.appendChild(taskLink);
   });
-
-  const removeTaskDetail = () => {
-    const getUl = document.querySelector('.showTaskUl');
-    if (getUl) {
-      getUl.remove();
-    }
-  };
 
   container.appendChild(projectTitle);
   container.appendChild(ulContainer);

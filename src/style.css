@@ -63,10 +63,11 @@ button {
 
 .tasks-container {
   position: absolute;
-  top: 12rem;
-  left: 2rem;
+  top: 23%;
+  left: 41%;
   padding: 2rem;
   background-color: #f9ed69;
+  z-index: -1;
 }
 
 .tasks-container h4 {
@@ -84,7 +85,7 @@ button {
   display: flex;
   flex-direction: column;
   margin: 1rem auto;
-  width: 300px;
+  width: 400px;
 }
 
 .task-modal input, select {
@@ -95,6 +96,9 @@ button {
   background-color: #f08a5d;
   line-height: 1.3rem;
   padding: 1rem;
+  position: absolute;
+  top: 23%;
+  left: 41%;
 }
 
 .showTaskUl li {
