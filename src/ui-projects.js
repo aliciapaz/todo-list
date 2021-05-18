@@ -5,9 +5,9 @@ import {
   updateProjectLS,
   deleteProjectLS,
 } from './localstorage';
-import { todoFactory } from './todo';
+import todoFactory from './todo';
 import { form, newProjectForm } from './form';
-import { displayTasks } from './todos-list';
+import displayTasks from './todos-list';
 import './style.css';
 
 const panel = () => {

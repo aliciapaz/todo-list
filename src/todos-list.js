@@ -169,4 +169,4 @@ const displayTasks = (project) => {
   return container;
 };
 
-export { displayTasks };
+export { displayTasks as default };
