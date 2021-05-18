@@ -1,5 +1,5 @@
-import { updateProjectLS } from "./localstorage"
-import { form } from "./form";
+import { updateProjectLS } from './localstorage';
+import { form } from './form';
 
 // prototype for project
 
@@ -14,13 +14,13 @@ const projectProto = {
   },
   getTasks() {
     return this.tasks;
-  }
+  },
 };
 
 // factory function for project
 
 const projectFactory = (title, tasks = []) => {
-  let obj = Object.create(projectProto);
+  const obj = Object.create(projectProto);
   obj.tasks = tasks;
   obj.title = title;
   return obj;
