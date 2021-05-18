@@ -13,7 +13,7 @@
 
 ## Live Demo
 
-[Live Demo Link]()
+[Live Demo Link](https://aliciapaz.github.io/todo-list/)
 
 ## Getting Started
 
