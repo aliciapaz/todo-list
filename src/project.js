@@ -1,8 +1,3 @@
-import { updateProjectLS } from './localstorage';
-import { form } from './form';
-
-// prototype for project
-
 const projectProto = {
   addTask(task) {
     this.tasks.push(task);
