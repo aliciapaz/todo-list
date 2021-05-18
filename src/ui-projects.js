@@ -5,7 +5,7 @@ import {
   updateProjectLS,
   deleteProjectLS,
 } from './localstorage';
-import { todoFactory } from './todo.js';
+import { todoFactory } from './todo';
 import { form, newProjectForm } from './form';
 import { displayTasks } from './todos-list';
 import './style.css';
@@ -28,29 +28,7 @@ const panel = () => {
     deleteProjectLS(project);
     const deletedProject = query(`.project-li-${project.id}`);
     deletedProject.remove();
-    location.reload();
-  };
-
-  const displayProjects = () => {
-    if (projectsContainer.children.length > 0) {
-      clearProjects();
-    }
-    const projectList = document.createElement('ul');
-    projectList.className = 'projects-ul';
-
-    const projects = getProjectsLS();
-
-    projects.forEach((project) => {
-      Object.setPrototypeOf(project, projectProto);
-      const projectLink = document.createElement('li');
-      projectLink.className = `project-li-${project.id}`;
-      projectLink.innerHTML = project.title;
-      createDeleteBtn(project, projectLink);
-      createToDosBtn(project, projectLink);
-      createShowProjectTasksButton(project, projectLink);
-      projectList.appendChild(projectLink);
-    });
-    projectsContainer.appendChild(projectList);
+    window.location.reload();
   };
 
   const createDeleteBtn = (project, projectLI) => {
@@ -61,7 +39,7 @@ const panel = () => {
     projectLI.appendChild(deleteBtn);
     deleteBtn.addEventListener('click', () => {
       deleteProject(project);
-      displayProjects();
+      // displayProjects();
     });
   };
 
@@ -76,7 +54,6 @@ const panel = () => {
     const taskForm = form();
     document.body.appendChild(taskForm);
 
-    // let addTaskBtn = document.querySelector(".add-task-btn")
     taskForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const title = taskForm.elements.title.value;
@@ -135,6 +112,28 @@ const panel = () => {
       }
       document.body.appendChild(displayTasks(project));
     });
+  };
+
+  const displayProjects = () => {
+    if (projectsContainer.children.length > 0) {
+      clearProjects();
+    }
+    const projectList = document.createElement('ul');
+    projectList.className = 'projects-ul';
+
+    const projects = getProjectsLS();
+
+    projects.forEach((project) => {
+      Object.setPrototypeOf(project, projectProto);
+      const projectLink = document.createElement('li');
+      projectLink.className = `project-li-${project.id}`;
+      projectLink.innerHTML = project.title;
+      createDeleteBtn(project, projectLink);
+      createToDosBtn(project, projectLink);
+      createShowProjectTasksButton(project, projectLink);
+      projectList.appendChild(projectLink);
+    });
+    projectsContainer.appendChild(projectList);
   };
 
   if (getProjectsLS().length === 0) {
