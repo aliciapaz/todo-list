@@ -63,10 +63,9 @@ button {
 
 .tasks-container {
   position: absolute;
-  top: 23%;
-  left: 41%;
+  left: 30%;
   padding: 2rem;
-  background-color: #f9ed69;
+  background-color: #fff79e;
   z-index: -1;
 }
 

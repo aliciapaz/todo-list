@@ -1,22 +1,23 @@
-import { projectFactory, projectProto } from './project';
 import {
   getProjectsLS,
   addProjectLS,
   updateProjectLS,
   deleteProjectLS,
 } from './localstorage';
-import todoFactory from './todo';
+import { projectFactory, projectProto } from './project';
 import { form, newProjectForm } from './form';
 import displayTasks from './todos-list';
+import todoFactory from './todo';
 import './style.css';
 
 const panel = () => {
   const query = document.querySelector.bind(document);
+  const create = document.createElement.bind(document);
 
-  const element = document.createElement('aside');
+  const element = create('aside');
   element.className = 'side-panel';
 
-  const projectsContainer = document.createElement('div');
+  const projectsContainer = create('div');
   projectsContainer.className = 'projects-container';
 
   const clearProjects = () => {
@@ -28,12 +29,34 @@ const panel = () => {
     deleteProjectLS(project);
     const deletedProject = query(`.project-li-${project.id}`);
     deletedProject.remove();
-    window.location.reload();
+    location.reload();
+  };
+
+  const displayProjects = () => {
+    if (projectsContainer.children.length > 0) {
+      clearProjects();
+    }
+    const projectList = create('ul');
+    projectList.className = 'projects-ul';
+
+    const projects = getProjectsLS();
+
+    projects.forEach((project) => {
+      Object.setPrototypeOf(project, projectProto);
+      const projectLink = create('li');
+      projectLink.className = `project-li-${project.id}`;
+      projectLink.innerHTML = project.title;
+      createDeleteBtn(project, projectLink);
+      createToDosBtn(project, projectLink);
+      createShowProjectTasksButton(project, projectLink);
+      projectList.appendChild(projectLink);
+    });
+    projectsContainer.appendChild(projectList);
   };
 
   const createDeleteBtn = (project, projectLI) => {
-    const deleteBtn = document.createElement('button');
-    const deleteIcon = document.createElement('i');
+    const deleteBtn = create('button');
+    const deleteIcon = create('i');
     deleteIcon.className = 'fas fa-trash';
     deleteBtn.appendChild(deleteIcon);
     projectLI.appendChild(deleteBtn);
@@ -73,7 +96,7 @@ const panel = () => {
   };
 
   const createToDosBtn = (project, projectLI) => {
-    const toDosBtn = document.createElement('button');
+    const toDosBtn = create('button');
     toDosBtn.className = 'add-task-btn';
     toDosBtn.innerHTML = 'Add task';
     projectLI.appendChild(toDosBtn);
@@ -102,7 +125,7 @@ const panel = () => {
   };
 
   const createShowProjectTasksButton = (project, projectLI) => {
-    const toDosShowBtn = document.createElement('button');
+    const toDosShowBtn = create('button');
     toDosShowBtn.innerHTML = 'Show';
     projectLI.appendChild(toDosShowBtn);
     toDosShowBtn.addEventListener('click', () => {
@@ -114,30 +137,8 @@ const panel = () => {
     });
   };
 
-  const displayProjects = () => {
-    if (projectsContainer.children.length > 0) {
-      clearProjects();
-    }
-    const projectList = document.createElement('ul');
-    projectList.className = 'projects-ul';
-
-    const projects = getProjectsLS();
-
-    projects.forEach((project) => {
-      Object.setPrototypeOf(project, projectProto);
-      const projectLink = document.createElement('li');
-      projectLink.className = `project-li-${project.id}`;
-      projectLink.innerHTML = project.title;
-      createDeleteBtn(project, projectLink);
-      createToDosBtn(project, projectLink);
-      createShowProjectTasksButton(project, projectLink);
-      projectList.appendChild(projectLink);
-    });
-    projectsContainer.appendChild(projectList);
-  };
-
   if (getProjectsLS().length === 0) {
-    const defaultProject = projectFactory('Default');
+    const defaultProject = projectFactory('To Do List');
     addProjectLS(defaultProject);
     displayProjects();
   } else {
@@ -147,7 +148,7 @@ const panel = () => {
   element.appendChild(projectsContainer);
 
   // New Project UI
-  const newProjectBtn = document.createElement('div');
+  const newProjectBtn = create('div');
   newProjectBtn.className = 'new-project';
   newProjectBtn.innerHTML = 'New project';
 
@@ -185,6 +186,13 @@ const panel = () => {
   newProjectBtn.appendChild(projectForm);
   element.appendChild(newProjectBtn);
 
+  const displayDefault = () => {
+    let projects = getProjectsLS()
+    let defaultProject = projects[0]
+    document.body.appendChild(displayTasks(defaultProject))
+  }
+
+  displayDefault()
   return element;
 };
 
