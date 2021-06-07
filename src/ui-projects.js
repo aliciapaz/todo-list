@@ -8,7 +8,7 @@ import { projectFactory, projectProto } from './project';
 import { form, newProjectForm } from './form';
 import displayTasks from './todos-list';
 import todoFactory from './todo';
-import './style.css';
+// import './style.css';
 
 const panel = () => {
   const query = document.querySelector.bind(document);
