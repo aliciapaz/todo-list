@@ -32,11 +32,6 @@ test("local storage is empty", () => {
   expect(getProjectsLS()).toEqual([]);
 } )
 
-// test("local storage is not empty", () => {
-//   const projectTest = {title:"projectTest"}
-//   addProjectLS(projectTest);
-//   expect(localStorage).not.toEqual([]);
-// })
 
 test("add project to LS", () => {
   const projectTest = {title:"projectTest"}

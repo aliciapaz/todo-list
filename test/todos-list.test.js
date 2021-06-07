@@ -27,3 +27,24 @@ test('deletes a task from the tasks container', ()=> {
   deleteTaskBtn.click()
   expect(tasksList.childElementCount).toBe(0)
 })
+
+test('Show a task ', ()=> {
+  const myTestProject = projectFactory('My test project')
+  myTestProject.addTask({title: 'My first task'})
+  document.body.appendChild(displayTasks(myTestProject))
+  const showTask = document.querySelector('.showTask')
+  showTask.click()
+  const tasksUl = document.querySelector('.showTaskUl');
+  expect(tasksUl.tagName).toBe('UL')
+})
+
+test('Display form functionality on update button', ()=> {
+  const myTestProject = projectFactory('My test project')
+  myTestProject.addTask({title: 'My first task'})
+  document.body.appendChild(displayTasks(myTestProject))
+  const tasksBtns = document.querySelector('.task-btns-0')
+  const updateTaskBtn = tasksBtns.childNodes[0]
+  updateTaskBtn.click()
+  let taskForm = document.querySelector('.update-task');
+  expect(taskForm.tagName).toBe('FORM')
+})
