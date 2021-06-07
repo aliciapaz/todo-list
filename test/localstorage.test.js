@@ -52,10 +52,12 @@ test("get project from LS", () => {
 
 test("delete project from LS", () => {
   const projectDelete = {"id": 1, title:"projectTestSecond"}
-  const deletePro = deleteProjectLS(projectDelete);
+  deleteProjectLS(projectDelete);
   expect(getProjectsLS()).toEqual([{"id": 0, "title": "projectTest"}]) 
 })
 
 test("update project from LS", () => {
- 
+  const projectUpdate = {"id": 0, title:"project"}
+  updateProjectLS(projectUpdate);
+  expect(getProjectsLS()).toEqual([{"id": 0, "title": "project"}])
 })

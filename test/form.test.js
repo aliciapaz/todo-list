@@ -1,7 +1,17 @@
-// import { form, newProjectForm } from '../src/form.js';
+/**
+ * @jest-environment jsdom
+ */
+ import { form, newProjectForm } from '../src/form.js';
 
-// describe("create a form", () => {
-//   const form = form();
-//   expect(form.type()).toEqual('Form');
-// })
-//change environment to jsdom
+ test("create a form", () => {
+   const taskForm = form();
+   document.body.appendChild(taskForm); 
+   expect(taskForm.tagName).toBe('FORM');
+ })
+ 
+ test("create a newProjectForm ", () => {
+  const projectForm = newProjectForm ();
+  document.body.appendChild(projectForm); 
+  expect(projectForm.tagName).toBe('FORM');
+})
+
