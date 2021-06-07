@@ -24,7 +24,8 @@ To get a local copy up and running follow these simple example steps.
 - Clone this repository using the link above (click on the 'code' button)
 - Open a terminal and `cd` to the cloned repository
 - run `npm install`
-- run `npm run build` 
+- run `npm run build`
+- run `npm test` to run the tests
 
 
 ### Usage
