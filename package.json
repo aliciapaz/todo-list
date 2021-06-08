@@ -4,9 +4,9 @@
   "description": "Simple to-do app built with JavaScript",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "watch": "webpack --watch"
+    "test": "jest",
+    "watch": "jest --watch",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -24,11 +24,13 @@
   },
   "homepage": "https://github.com/aliciapaz/todo-list#readme",
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.14.0",
     "babel-eslint": "^10.1.0",
     "css-loader": "^5.2.4",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
+    "jest": "^27.0.4",
     "style-loader": "^2.0.0",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^20.0.0",
